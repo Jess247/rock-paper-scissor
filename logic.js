@@ -42,16 +42,14 @@ console.log(`${userChoice} ${compChoice}`);
 
 // play round
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "rock" && computerSelection === "scissor") {
-        return "User wins";
-    } else if (playerSelection === "paper" && computerSelection === "rock"){
-        return "User wins";
-    } else if (playerSelection === "scissor" && computerSelection === "paper") {
-        return "user wins";
+    if (playerSelection === "rock" && computerSelection === "scissor" ||
+        playerSelection === "paper" && computerSelection === "rock" ||
+        playerSelection === "scissor" && computerSelection === "paper") {
+        return `Win! ${playerSelection} beats ${computerSelection}`;
     } else if (playerSelection === computerSelection) {
         return "It's a tie";
     }else {
-        return "Computer wins!";
+        return `Lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
 

@@ -18,21 +18,41 @@ compare user choice and computer choice
 function getComputerChoice() {
     let randNum = Math.floor(Math.random() * 3) + 1;
     let choice = null;
-    console.log(randNum);
     switch (randNum) {
         case 1:
-            choice = "Rock";
+            choice = "rock";
             break;
 
         case 2: 
-            choice = "Paper";
+            choice = "paper";
             break;
 
         case 3:
-            choice = "Scissor";
+            choice = "scissor";
             break;
     }
     return choice;
 }
 
-console.log(getComputerChoice());
+
+// prompt user to enter a choice
+const userChoice = prompt("Choose Rock, Paper or Scissor: ").toLowerCase();
+const compChoice = getComputerChoice();
+console.log(`${userChoice} ${compChoice}`);
+
+// play round
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === "rock" && computerSelection === "scissor") {
+        return "User wins";
+    } else if (playerSelection === "paper" && computerSelection === "rock"){
+        return "User wins";
+    } else if (playerSelection === "scissor" && computerSelection === "paper") {
+        return "user wins";
+    } else if (playerSelection === computerSelection) {
+        return "It's a tie";
+    }else {
+        return "Computer wins!";
+    }
+}
+
+console.log(playRound(userChoice, compChoice));

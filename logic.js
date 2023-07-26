@@ -20,6 +20,7 @@ function getComputerChoice() {
 
 // play round
 function playRound(playerSelection, computerSelection) {
+    // determin round winner
     if (playerSelection === "rock" && computerSelection === "scissor" ||
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissor" && computerSelection === "paper") {
@@ -31,20 +32,23 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// console.log(playRound(userChoice, compChoice));
-
+// play game
 function game() {
     let counter = 0;
     let currentResult;
     let userScore = 0;
     let compScore = 0;
 
+    // play game rounds
     while(counter < 5) {
+        // prompt user and get compchoice
         const userChoice = prompt("Choose Rock, Paper or Scissor: ").toLowerCase();
         const compChoice = getComputerChoice();
         
+        // get round result and output
         currentResult = playRound(userChoice, compChoice);
         console.log(currentResult);
+        // increse score
         if (currentResult.includes("Win")) {
             userScore++;
         } else if (currentResult.includes("Lose")){
@@ -52,6 +56,7 @@ function game() {
         }
         ++counter;
     }
+    // log result
     if (userScore > compScore) {
         console.log("You win!");
     } else if (userScore === compScore) {

@@ -1,4 +1,8 @@
-const btns = document.querySelectorAll("button");
+const btns = document.querySelectorAll('button');
+const resultContainer = document.querySelector('.results-container');
+const resultMsg = document.querySelector('.result-msg');
+const score = document.querySelector('.score');
+resultMsg.textContent = "Let see who'll win!";
 
 btns.forEach(btn => {
     btn.addEventListener('click', playRound);
@@ -31,11 +35,11 @@ function playRound(e) {
     if (userChoice === "rock" && compChoice === "scissors" ||
         userChoice === "paper" && compChoice === "rock" ||
         userChoice === "scissors" && compChoice === "paper") {
-        console.log( `Win! ${userChoice} beats ${compChoice}`);
+        resultMsg.textContent = `Win! ${userChoice} beats ${compChoice}`;
     } else if (userChoice === compChoice) {
-        console.log( `It's a tie! ${compChoice} & ${userChoice}`);
+        resultMsg.textContent = `It's a tie! ${compChoice} & ${userChoice}`;
     }else {
-        console.log( `Lose! ${compChoice} beats ${userChoice}`);
+        resultMsg.textContent = `Lose! ${compChoice} beats ${userChoice}`;
     }
 }
 
@@ -48,11 +52,12 @@ function game() {
 
     // play game rounds
     // get round result and output
-    currentResult = playRound(userChoice, compChoice);
+    currentResult = playRound(this.id);
     console.log(currentResult);
     // increse score
     if (currentResult.includes("Win")) {
         userScore++;
+        score.textContent = userScore;
     } else if (currentResult.includes("Lose")){
         compScore++;
     }
@@ -69,4 +74,4 @@ function game() {
 
 }
 
-//game();
+game();

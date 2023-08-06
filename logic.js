@@ -52,7 +52,7 @@ function playRound(e) {
 function updateScore(u,c) {
     uScore.textContent = u;
     cScore.textContent = c;
-    if ((u + c) === 5) {
+    if (u === 5 || c === 5) {
         if (u > c) {
             resultMsg.textContent = "Congrads, you win!";
         } else if (u < c) {

@@ -1,3 +1,9 @@
+const btns = document.querySelectorAll("button");
+
+btns.forEach(btn => {
+    btn.addEventListener('click', playRound);
+});
+
 // generate random computer choice
 function getComputerChoice() {
     let randNum = Math.floor(Math.random() * 3) + 1;
@@ -12,23 +18,24 @@ function getComputerChoice() {
             break;
 
         case 3:
-            choice = "scissor";
+            choice = "scissors";
             break;
     }
     return choice;
 }
 
-// play round
-function playRound(playerSelection, computerSelection) {
-    // determin round winner
-    if (playerSelection === "rock" && computerSelection === "scissor" ||
-        playerSelection === "paper" && computerSelection === "rock" ||
-        playerSelection === "scissor" && computerSelection === "paper") {
-        return `Win! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection === computerSelection) {
-        return `It's a tie! ${computerSelection} & ${playerSelection}`;
+function playRound(e) {
+    const compChoice = getComputerChoice();
+    const userChoice = this.id;
+
+    if (userChoice === "rock" && compChoice === "scissors" ||
+        userChoice === "paper" && compChoice === "rock" ||
+        userChoice === "scissors" && compChoice === "paper") {
+        console.log( `Win! ${userChoice} beats ${compChoice}`);
+    } else if (userChoice === compChoice) {
+        console.log( `It's a tie! ${compChoice} & ${userChoice}`);
     }else {
-        return `Lose! ${computerSelection} beats ${playerSelection}`;
+        console.log( `Lose! ${compChoice} beats ${userChoice}`);
     }
 }
 
@@ -40,22 +47,17 @@ function game() {
     let compScore = 0;
 
     // play game rounds
-    while(counter < 5) {
-        // prompt user and get compchoice
-        const userChoice = prompt("Choose Rock, Paper or Scissor: ").toLowerCase();
-        const compChoice = getComputerChoice();
-        
-        // get round result and output
-        currentResult = playRound(userChoice, compChoice);
-        console.log(currentResult);
-        // increse score
-        if (currentResult.includes("Win")) {
-            userScore++;
-        } else if (currentResult.includes("Lose")){
-            compScore++;
-        }
-        ++counter;
+    // get round result and output
+    currentResult = playRound(userChoice, compChoice);
+    console.log(currentResult);
+    // increse score
+    if (currentResult.includes("Win")) {
+        userScore++;
+    } else if (currentResult.includes("Lose")){
+        compScore++;
     }
+
+
     // log result
     if (userScore > compScore) {
         console.log("You win!");
@@ -67,4 +69,4 @@ function game() {
 
 }
 
-game();
+//game();

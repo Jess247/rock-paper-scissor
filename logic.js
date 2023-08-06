@@ -1,13 +1,13 @@
 const btns = document.querySelectorAll('button');
 const resultContainer = document.querySelector('.results-container');
 const resultMsg = document.querySelector('.result-msg');
-const score = document.querySelector('.score');
+const uScore = document.querySelector('.u-score');
+const cScore = document.querySelector('.c-score');
 resultMsg.textContent = "Let see who'll win!";
-
 let userScore = 0;
 let compScore = 0;
 
-btns.forEach(btn => {
+btns.forEach((btn) => {
     btn.addEventListener('click', playRound);
 });
 
@@ -38,32 +38,27 @@ function playRound(e) {
     if (userChoice === "rock" && compChoice === "scissors" ||
         userChoice === "paper" && compChoice === "rock" ||
         userChoice === "scissors" && compChoice === "paper") {
-        resultMsg.textContent = `Win! ${userChoice} beats ${compChoice}`;
-        userScore++;
-        console.log(userScore);
+        resultMsg.textContent = `${userChoice} beats ${compChoice}`;
+        updateScore(userScore += 1, compScore);
     } else if (userChoice === compChoice) {
         resultMsg.textContent = `It's a tie! ${compChoice} & ${userChoice}`;
     }else {
-        resultMsg.textContent = `Lose! ${compChoice} beats ${userChoice}`;
-        compScore++;
-        console.log(compScore);
+        resultMsg.textContent = `${compChoice} beats ${userChoice}`;
+        updateScore(userScore, compScore += 1);
     }
 }
 
-// play game
-function game() {
 
-    // log result
-    if (userScore + compScore === 5) {
-        if (userScore > compScore) {
-            console.log("You win!");
-        } else if (userScore === compScore) {
-            console.log("It's a tie!");
+function updateScore(u,c) {
+    uScore.textContent = u;
+    cScore.textContent = c;
+    if ((u + c) === 5) {
+        if (u > c) {
+            resultMsg.textContent = "Congrads, you win!";
+        } else if (u < c) {
+            resultMsg.textContent = "Sorry,you lose!";
         } else {
-            console.log("You lose!");
+            resultMsg.textContent = "Nobody wins, it's a tie!"
         }
-    }
-
+    } 
 }
-
-game();

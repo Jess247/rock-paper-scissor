@@ -3,7 +3,8 @@ const resultContainer = document.querySelector('.results-container');
 const resultMsg = document.querySelector('.result-msg');
 const uScore = document.querySelector('.u-score');
 const cScore = document.querySelector('.c-score');
-resultMsg.textContent = "Let see who'll win!";
+resultMsg.textContent = "Let's play rock, paper, scissors!";
+
 let userScore = 0;
 let compScore = 0;
 
@@ -11,7 +12,7 @@ btns.forEach((btn) => {
     btn.addEventListener('click', playRound);
 });
 
-// generate random computer choice
+
 function getComputerChoice() {
     let randNum = Math.floor(Math.random() * 3) + 1;
     let choice = null;
@@ -38,12 +39,12 @@ function playRound(e) {
     if (userChoice === "rock" && compChoice === "scissors" ||
         userChoice === "paper" && compChoice === "rock" ||
         userChoice === "scissors" && compChoice === "paper") {
-        resultMsg.textContent = `${userChoice} beats ${compChoice}`;
+        resultMsg.textContent = `Good job, ${userChoice} beats ${compChoice}`;
         updateScore(userScore += 1, compScore);
     } else if (userChoice === compChoice) {
         resultMsg.textContent = `It's a tie! ${compChoice} & ${userChoice}`;
     }else {
-        resultMsg.textContent = `${compChoice} beats ${userChoice}`;
+        resultMsg.textContent = `Bad luck, ${compChoice} beats ${userChoice}`;
         updateScore(userScore, compScore += 1);
     }
 }
@@ -56,7 +57,7 @@ function updateScore(u,c) {
         if (u > c) {
             resultMsg.textContent = "Congrads, you win!";
         } else if (u < c) {
-            resultMsg.textContent = "Sorry,you lose!";
+            resultMsg.textContent = "Sorry , you lose!";
         } else {
             resultMsg.textContent = "Nobody wins, it's a tie!";
         }

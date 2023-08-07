@@ -58,7 +58,7 @@ function updateScore(u,c) {
         } else if (u < c) {
             resultMsg.textContent = "Sorry,you lose!";
         } else {
-            resultMsg.textContent = "Nobody wins, it's a tie!"
+            resultMsg.textContent = "Nobody wins, it's a tie!";
         }
     } 
 }

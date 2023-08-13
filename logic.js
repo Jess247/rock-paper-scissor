@@ -61,5 +61,8 @@ function updateScore(u,c) {
         } else {
             resultMsg.textContent = "Nobody wins, it's a tie!";
         }
+        btns.forEach((btn) => {
+            btn.setAttribute('disabled', '');
+        });
     } 
 }
